@@ -1,0 +1,23 @@
+News Tracker
+
+Cleaner
+
+Leecher - extracts contents of websites based on the URLs from the cleaner
+It uses the Web Extractor program.
+Create Projects for each news feed. This project holds the extraction pattern of that news web site. The file extension is .wcepr.
+These projects have to be create for EACH news web site, prior to running the News Tracker system.
+The Leecher reads the current (previous day) log file. It extracts the URL of each news story [may add further filters] and writes these to a text file (urls_<name of news site>.txt).
+Then it constructs a WE command line query to extract the content of the Title, Intro, Body text, and main image.
+This is stored in a .csv text file along with any images (in an image subfolder).
+When all the URLs in the cleaned log file are processed the program should append the extracted text of each URL to the correct line in the cleaned log file and add the image name (<folder name>\<image name>).
+
+
+- create a file open method to read the previous day cleaned log file
+
+/////
+create folder with all the WE project files
+each file has the same structure: domainname_extension.wcepr
+then read this folder and strip the .wcepr extension and replace the _ with a .
+stuff this in an array and clean the log file urls against this array
+so you're left with just those urls for which there is a WE project file
+Then loop through the clean url list, build WE queries, execute them, each time wait for WE to finish
